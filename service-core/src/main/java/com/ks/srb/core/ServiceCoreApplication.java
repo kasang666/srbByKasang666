@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.ks.srb")  // 由于其他的模块会被导入，所以其他模块的bean也会被扫描到
+@ComponentScan({"com.ks.srb", "com.ks.common"})  // 由于其他的模块会被导入，所以其他模块的bean也会被扫描到
 public class ServiceCoreApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceCoreApplication.class, args);

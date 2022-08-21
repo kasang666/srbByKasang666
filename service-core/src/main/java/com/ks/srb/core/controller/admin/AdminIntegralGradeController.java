@@ -1,6 +1,7 @@
 package com.ks.srb.core.controller.admin;
 
 
+import com.ks.common.exception.BusinessException;
 import com.ks.common.result.R;
 import com.ks.srb.core.pojo.entity.IntegralGrade;
 import com.ks.srb.core.service.IntegralGradeService;
@@ -32,8 +33,15 @@ public class AdminIntegralGradeController {
     @ApiOperation(value = "积分等级列表", notes = "获取积分等级列表")  // value是说明， notes详细说明
     @GetMapping("/list")
     public R getList(){
-        List<IntegralGrade> list = this.integralGradeService.list();
-        return R.success().data("list", list);
+        try {
+            List<IntegralGrade> list = this.integralGradeService.list();
+            if(true){
+                throw new Exception("测试异常");
+            }
+            return R.success().data("list", list);
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
     }
 
     @ApiOperation(value = "根据id查询")

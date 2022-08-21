@@ -21,7 +21,7 @@ public enum ResponseEnum {
     // 定义枚举对象，对象之间用逗号分隔， 以分号结尾
 
     SUCCESS(0, "ok"),
-    ERROR(-1, "未知错误！"),
+    ERROR(-1, "失败！"),
 
 
     //-1xx 服务器错误
