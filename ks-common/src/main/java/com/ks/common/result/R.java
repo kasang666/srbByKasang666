@@ -17,6 +17,8 @@ import java.util.Map;
 @Data
 public class R {
 
+
+
     private Integer code;
     private String msg;
     private Map<String, Object> data = new HashMap<>();

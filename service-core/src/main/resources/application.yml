@@ -16,7 +16,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/ks/srb/core/mapper/xml/*.xml
-logging:
-  level:
-    root: info
+#logging:
+#  level:
+#    root: info
 

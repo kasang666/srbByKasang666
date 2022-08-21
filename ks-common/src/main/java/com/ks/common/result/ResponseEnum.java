@@ -64,8 +64,8 @@ public enum ResponseEnum {
     ;
 
     // 响应状态码
-    private Integer code;
+    private final Integer code;
     // 响应信息
-    private String msg;
+    private final String msg;
 
 }

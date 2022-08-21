@@ -8,6 +8,7 @@ import com.ks.srb.core.service.IntegralGradeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +22,9 @@ import java.util.List;
  * @author kasang
  * @since 2022-08-20
  */
+
+
+@Slf4j
 @Api(tags = "积分等级管理")  // 默认是类名的驼峰变杠admin-integral-grade-controller
 @CrossOrigin
 @RestController
@@ -49,6 +53,9 @@ public class AdminIntegralGradeController {
     public R getById(
             @ApiParam(value = "对象id", required = true)
             @PathVariable Integer id){
+        log.info("this is info");
+        log.warn("this is warn");
+        log.error("this is error");
         IntegralGrade integralGrade = this.integralGradeService.getById(id);
         return integralGrade != null ? R.success().data("record", integralGrade): R.error();
     }
