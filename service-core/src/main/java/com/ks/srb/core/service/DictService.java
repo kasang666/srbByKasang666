@@ -1,7 +1,11 @@
 package com.ks.srb.core.service;
 
-import com.ks.srb.core.pojo.entity.Dict;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ks.srb.core.pojo.dto.ExcelDictDTO;
+import com.ks.srb.core.pojo.entity.Dict;
+
+import java.io.InputStream;
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-08-20
  */
 public interface DictService extends IService<Dict> {
+
+    void saveDataFromExcel(InputStream inputStream);
+
+    List<ExcelDictDTO> getList();
+
+    List<Dict> getByParentId(Long parentId);
 
 }

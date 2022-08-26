@@ -1,0 +1,6 @@
+2022-08-21 13:20:50 [INFO ] main StartupInfoLogger.java:55 com.ks.srb.core.ServiceCoreApplication Starting ServiceCoreApplication on WIN-RBFN9GVM8LM with PID 19236 (E:\IdeaWorkespace\guigu\srb\service-core\target\classes started by Administrator in E:\IdeaWorkespace\guigu\srb)
+2022-08-21 13:20:50 [INFO ] main SpringApplication.java:655 com.ks.srb.core.ServiceCoreApplication The following profiles are active: dev
+2022-08-21 13:20:53 [INFO ] main StartupInfoLogger.java:61 com.ks.srb.core.ServiceCoreApplication Started ServiceCoreApplication in 3.33 seconds (JVM running for 4.092)
+2022-08-21 13:21:15 [INFO ] http-nio-8848-exec-8 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:21:15 [WARN ] http-nio-8848-exec-8 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:21:15 [ERROR] http-nio-8848-exec-8 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error

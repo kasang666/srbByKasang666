@@ -39,9 +39,9 @@ public class AdminIntegralGradeController {
     public R getList(){
         try {
             List<IntegralGrade> list = this.integralGradeService.list();
-            if(true){
-                throw new Exception("测试异常");
-            }
+//            if(true){
+//                throw new Exception("测试异常");
+//            }
             return R.success().data("list", list);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());

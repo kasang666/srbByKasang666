@@ -1,0 +1,48 @@
+2022-08-21 12:45:12 [INFO ] main StartupInfoLogger.java:55 com.ks.srb.core.ServiceCoreApplication Starting ServiceCoreApplication on WIN-RBFN9GVM8LM with PID 8264 (E:\IdeaWorkespace\guigu\srb\service-core\target\classes started by Administrator in E:\IdeaWorkespace\guigu\srb)
+2022-08-21 12:45:12 [INFO ] main SpringApplication.java:655 com.ks.srb.core.ServiceCoreApplication The following profiles are active: dev
+2022-08-21 12:45:15 [INFO ] main StartupInfoLogger.java:61 com.ks.srb.core.ServiceCoreApplication Started ServiceCoreApplication in 3.114 seconds (JVM running for 4.056)
+2022-08-21 12:56:42 [INFO ] http-nio-8848-exec-3 AdminIntegralGradeController.java:55 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 12:56:42 [WARN ] http-nio-8848-exec-3 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 12:56:42 [ERROR] http-nio-8848-exec-3 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:05:09 [INFO ] http-nio-8848-exec-1 AdminIntegralGradeController.java:55 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:05:09 [WARN ] http-nio-8848-exec-1 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:05:09 [ERROR] http-nio-8848-exec-1 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:05:09 [INFO ] http-nio-8848-exec-4 AdminIntegralGradeController.java:55 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:05:09 [WARN ] http-nio-8848-exec-4 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:05:09 [ERROR] http-nio-8848-exec-4 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:05:10 [INFO ] http-nio-8848-exec-7 AdminIntegralGradeController.java:55 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:05:10 [WARN ] http-nio-8848-exec-7 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:05:10 [ERROR] http-nio-8848-exec-7 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:05:10 [INFO ] http-nio-8848-exec-9 AdminIntegralGradeController.java:55 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:05:10 [WARN ] http-nio-8848-exec-9 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:05:10 [ERROR] http-nio-8848-exec-9 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:05:42 [INFO ] main StartupInfoLogger.java:55 com.ks.srb.core.ServiceCoreApplication Starting ServiceCoreApplication on WIN-RBFN9GVM8LM with PID 19268 (E:\IdeaWorkespace\guigu\srb\service-core\target\classes started by Administrator in E:\IdeaWorkespace\guigu\srb)
+2022-08-21 13:05:42 [INFO ] main SpringApplication.java:655 com.ks.srb.core.ServiceCoreApplication The following profiles are active: dev
+2022-08-21 13:05:45 [INFO ] main StartupInfoLogger.java:61 com.ks.srb.core.ServiceCoreApplication Started ServiceCoreApplication in 3.128 seconds (JVM running for 4.01)
+2022-08-21 13:07:49 [INFO ] http-nio-8848-exec-8 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:07:49 [WARN ] http-nio-8848-exec-8 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:07:49 [ERROR] http-nio-8848-exec-8 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:07:50 [INFO ] http-nio-8848-exec-9 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:07:50 [WARN ] http-nio-8848-exec-9 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:07:50 [ERROR] http-nio-8848-exec-9 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:19 [INFO ] main StartupInfoLogger.java:55 com.ks.srb.core.ServiceCoreApplication Starting ServiceCoreApplication on WIN-RBFN9GVM8LM with PID 18108 (E:\IdeaWorkespace\guigu\srb\service-core\target\classes started by Administrator in E:\IdeaWorkespace\guigu\srb)
+2022-08-21 13:14:19 [INFO ] main SpringApplication.java:655 com.ks.srb.core.ServiceCoreApplication The following profiles are active: dev
+2022-08-21 13:14:22 [INFO ] main StartupInfoLogger.java:61 com.ks.srb.core.ServiceCoreApplication Started ServiceCoreApplication in 3.325 seconds (JVM running for 4.1)
+2022-08-21 13:14:32 [INFO ] http-nio-8848-exec-8 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:32 [WARN ] http-nio-8848-exec-8 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:32 [ERROR] http-nio-8848-exec-8 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:33 [INFO ] http-nio-8848-exec-10 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:33 [WARN ] http-nio-8848-exec-10 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:33 [ERROR] http-nio-8848-exec-10 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:34 [INFO ] http-nio-8848-exec-9 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:34 [WARN ] http-nio-8848-exec-9 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:34 [ERROR] http-nio-8848-exec-9 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:34 [INFO ] http-nio-8848-exec-1 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:34 [WARN ] http-nio-8848-exec-1 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:34 [ERROR] http-nio-8848-exec-1 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:34 [INFO ] http-nio-8848-exec-2 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:34 [WARN ] http-nio-8848-exec-2 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:34 [ERROR] http-nio-8848-exec-2 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
+2022-08-21 13:14:34 [INFO ] http-nio-8848-exec-3 AdminIntegralGradeController.java:56 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is info
+2022-08-21 13:14:34 [WARN ] http-nio-8848-exec-3 AdminIntegralGradeController.java:57 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is warn
+2022-08-21 13:14:34 [ERROR] http-nio-8848-exec-3 AdminIntegralGradeController.java:58 com.ks.srb.core.controller.admin.AdminIntegralGradeController this is error
