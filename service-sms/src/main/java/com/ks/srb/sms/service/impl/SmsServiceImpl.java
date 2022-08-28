@@ -75,7 +75,7 @@ public class SmsServiceImpl implements SmsService {
         RuntimeOptions runtime = new RuntimeOptions();
         try {
             // 复制代码运行请自行打印 API 的返回值
-            client.sendSmsWithOptions(sendSmsRequest, runtime);
+//            client.sendSmsWithOptions(sendSmsRequest, runtime);
             // 将验证码存入redis里面
             String smsCodeKey = "srb:sms:code:" + fourBitRandom;
             try {
