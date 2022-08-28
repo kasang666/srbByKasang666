@@ -18,7 +18,8 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.junit.Test;   // 这个注解是junit-vintage-engine的，这个模块不依赖于spring-boot所以可以不用创建spring-boot启动类
+import org.junit.Test;   // 这个注解是junit-vintage-engine（基于junit4）提供的，启动测试方法时和springboot没有关系， 如果想要使用springboot的上下文环境，需要加RunWith注解和springbootTest注解
+//import org.junit.jupiter.api.Test;  // 这个注解是junit-jupiter-engine（基于junit5）提供的，使用的时候会自动地创建springboot上下文环境， 相当于内置了RunWith注解，但还是需要springbootTest注解
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

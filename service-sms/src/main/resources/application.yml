@@ -1,0 +1,26 @@
+server:
+  port: 8120
+
+spring:
+  application:
+    name: service-sms
+  profiles:
+    active: dev
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+    lettuce:
+      pool:
+        max-active: 20  #最大连接数，负值表示没有限制，默认8
+        max-wait: -1    #最大阻塞等待时间，负值表示没限制，默认-1
+        max-idle: 8     #最大空闲连接，默认8
+        min-idle: 0     #最小空闲连接，默认0
+
+aliyun:
+  sms:
+    a-c-c-e-s-s-k-e-y-i-d: LTAI5t6WneibSmmL1LzPLs3E
+    a-c-c-e-s-s-k-e-y-s-e-c-r-e-t: w7QMJl5zmaJeuTQqYXkyUiFiPEjlcg
+    s-i-g-n-n-a-m-e: 阿里云短信测试
+    t-e-m-p-l-a-t-e-c-o-d-e: SMS_154950909
+
