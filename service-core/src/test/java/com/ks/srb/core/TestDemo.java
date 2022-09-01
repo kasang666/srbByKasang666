@@ -12,21 +12,18 @@ package com.ks.srb.core;
 
 import com.ks.srb.core.mapper.DictMapper;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.nio.charset.StandardCharsets;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
 public class TestDemo {
     @Resource
     private DictMapper dictMapper;
 
     @Test
     public void testFun(){
-        System.out.println(dictMapper);
+        System.out.println(DigestUtils.md5DigestAsHex("123456".getBytes(StandardCharsets.UTF_8)));
     }
 
 }

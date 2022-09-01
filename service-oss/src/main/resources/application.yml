@@ -1,0 +1,15 @@
+server:
+  port: 8130
+
+spring:
+  application:
+    name: service-oss
+  profiles:
+    active: dev
+
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    access-key-id: LTAI5tHUioWshDPnpRoXK3Gf
+    access-key-secret: gdOrbJyGCeK1BWaWWJ98jTvBUEzmOY
+    bucket-name: srb-file-by-ks

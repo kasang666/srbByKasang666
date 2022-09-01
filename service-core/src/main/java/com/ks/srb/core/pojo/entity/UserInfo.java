@@ -1,15 +1,16 @@
 package com.ks.srb.core.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -25,6 +26,13 @@ import lombok.EqualsAndHashCode;
 public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    // 用户正常状态
+    public static final Integer STATIC_NORMAL = 1;
+    // 用户锁定状态
+    public static final Integer STATIC_LOCKED = 0;
+    // 默认头像链接
+    public static final String HEAD_IMG = "https://srb-file-by-ks.oss-cn-hangzhou.aliyuncs.com/avator/0a3b3288-3446-4420-bbff-f263d0c02d8e.jpg";
 
     @ApiModelProperty(value = "编号")
       @TableId(value = "id", type = IdType.AUTO)

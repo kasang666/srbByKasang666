@@ -77,7 +77,7 @@ public class SmsServiceImpl implements SmsService {
             // 复制代码运行请自行打印 API 的返回值
 //            client.sendSmsWithOptions(sendSmsRequest, runtime);
             // 将验证码存入redis里面
-            String smsCodeKey = "srb:sms:code:" + fourBitRandom;
+            String smsCodeKey = "srb:sms:code:" + mobile;
             try {
                 forValue.set(smsCodeKey, fourBitRandom, 5, TimeUnit.MINUTES);
                 // 同时将手机号码标价，用来限流

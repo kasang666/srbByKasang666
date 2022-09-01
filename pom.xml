@@ -8,6 +8,7 @@
         <module>service-base</module>
         <module>service-core</module>
         <module>service-sms</module>
+        <module>service-oss</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -15,10 +16,10 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.ks</groupId>
-    <artifactId>srb</artifactId>
+    <groupId>com.ks.srb</groupId>
+    <artifactId>srb-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>srb</name>
+    <name>srb-parent</name>
     <description>srb project</description>
     <properties>
         <java.version>1.8</java.version>
