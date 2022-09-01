@@ -19,8 +19,8 @@ spring:
 
 aliyun:
   sms:
-    a-c-c-e-s-s-k-e-y-i-d: LTAI5t6WneibSmmL1LzPLs3E
-    a-c-c-e-s-s-k-e-y-s-e-c-r-e-t: w7QMJl5zmaJeuTQqYXkyUiFiPEjlcg
+    a-c-c-e-s-s-k-e-y-i-d: 你自己的id
+    a-c-c-e-s-s-k-e-y-s-e-c-r-e-t: 你自己的密钥
     s-i-g-n-n-a-m-e: 阿里云短信测试
     t-e-m-p-l-a-t-e-c-o-d-e: SMS_154950909
 
