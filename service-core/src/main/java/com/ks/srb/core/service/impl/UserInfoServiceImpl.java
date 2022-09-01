@@ -12,6 +12,7 @@ import com.ks.srb.core.service.UserAccountService;
 import com.ks.srb.core.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -30,6 +31,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Autowired
     private UserAccountService accountService;
 
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public void register(RegisterVO registerVO) {
         String mobile = registerVO.getMobile();
