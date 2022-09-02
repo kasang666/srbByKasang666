@@ -43,6 +43,7 @@ public enum ResponseEnum {
     LOGIN_PASSWORD_ERROR(209, "密码错误"),
     LOGIN_LOKED_ERROR(210, "用户被锁定"),
     LOGIN_AUTH_ERROR(-211, "未登录"),
+    USERNAME_OR_PASSWORD_ERROR(-212, "用户名或密码错误！"),
 
 
     USER_BIND_IDCARD_EXIST_ERROR(-301, "身份证号码已绑定"),

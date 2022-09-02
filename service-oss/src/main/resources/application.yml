@@ -10,6 +10,6 @@ spring:
 aliyun:
   oss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    access-key-id: 你自己的id
-    access-key-secret: 你自己的密钥
+    access-key-id: LTAI5tHUioWshDPnpRoXK3Gf
+    access-key-secret: gdOrbJyGCeK1BWaWWJ98jTvBUEzmOY
     bucket-name: srb-file-by-ks
