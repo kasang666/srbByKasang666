@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Api(tags = "文件存储服务")
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/api/oss/file")
 @RestController
 public class OSSController {

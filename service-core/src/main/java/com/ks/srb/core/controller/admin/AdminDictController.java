@@ -33,7 +33,7 @@ import java.util.List;
 
 
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 @Api(tags = "数据字典管理")
 @RestController
 @RequestMapping("admin/core/dict")

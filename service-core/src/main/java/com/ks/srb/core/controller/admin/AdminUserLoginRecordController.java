@@ -24,7 +24,7 @@ import java.util.List;
 
 @Api(tags = "用户登录日志管理")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/core/userLoginRecord")
 public class AdminUserLoginRecordController {

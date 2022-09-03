@@ -24,3 +24,12 @@ aliyun:
     s-i-g-n-n-a-m-e: 阿里云短信测试
     t-e-m-p-l-a-t-e-c-o-d-e: SMS_154950909
 
+logging:
+  level:
+    com.ks.srb.sms.client.CoreUserInfoClient: DEBUG #以什么级别监控哪个接口
+
+  #开启Feign对Sentinel的支持
+feign:
+  sentinel:
+    enabled: true
+

@@ -25,6 +25,10 @@ spring:
   cache:
     redis:
       time-to-live: 300000  # 缓存5分钟
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # nacos服务地址
 
 
 mybatis-plus:

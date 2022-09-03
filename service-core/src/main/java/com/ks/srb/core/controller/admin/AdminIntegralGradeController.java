@@ -26,7 +26,7 @@ import java.util.List;
 
 @Slf4j
 @Api(tags = "积分等级管理")  // 默认是类名的驼峰变杠admin-integral-grade-controller
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("admin/core/integralGrade")
 public class AdminIntegralGradeController {

@@ -145,4 +145,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfo.setStatus(status);
         this.updateById(userInfo);
     }
+
+    @Override
+    public boolean checkMobile(String mobile) {
+        LambdaQueryWrapper<UserInfo> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(StringUtils.isNotBlank(mobile), UserInfo::getMobile, mobile);
+        int count = this.count(lqw);
+        return count == 0;
+    }
 }

@@ -26,4 +26,6 @@ public interface UserInfoService extends IService<UserInfo> {
     Page<UserInfo> getPageList(UserInfoQuery userInfoQuery, Integer page, Integer limit);
 
     void lock(Long id, Integer status);
+
+    boolean checkMobile(String mobile);
 }

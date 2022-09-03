@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Api(tags = "会员接口")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("api/core/userInfo")
 public class UserInfoController {
@@ -104,6 +104,12 @@ public class UserInfoController {
         String token = request.getHeader("token");
         boolean res = JwtUtils.checkToken(token);
         return res? R.success(): R.error();
+    }
+
+    @ApiOperation("校验手机号是否注册")
+    @GetMapping("/checkMobile/{mobile}")
+    public boolean checkMobile(@ApiParam(value = "需要校验的手机号", required = true) @PathVariable String mobile){
+        return this.userInfoService.checkMobile(mobile);
     }
 
 
