@@ -55,6 +55,7 @@ public enum ResponseEnum {
     LEND_FULL_SCALE_ERROR(306, "已满标，无法投标"),
     NOT_SUFFICIENT_FUNDS_ERROR(307, "余额不足，请充值"),
     DICT_CODE_NOT_EXISTS(308, "字典数据不存在"),
+    FORM_SUBMIT(309, "信息以提交，请耐心等待"),
 
     PAY_UNIFIEDORDER_ERROR(401, "统一下单错误"),
 
