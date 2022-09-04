@@ -3,12 +3,15 @@ package com.ks.srb.core.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ks.common.exception.Assert;
+import com.ks.common.result.ResponseEnum;
 import com.ks.srb.core.listener.ExcelDictDTOListener;
 import com.ks.srb.core.mapper.DictMapper;
 import com.ks.srb.core.pojo.dto.ExcelDictDTO;
 import com.ks.srb.core.pojo.entity.Dict;
 import com.ks.srb.core.service.DictService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -69,6 +72,16 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
             item.setHasChildren(hasChildren);
         });
         return dictList;
+    }
+
+    @Override
+    public List<Dict> findByDictCode(String dictCode) {
+        LambdaQueryWrapper<Dict> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(StringUtils.isNotBlank(dictCode), Dict::getDictCode, dictCode);
+        Dict dict = this.getOne(lqw);
+        Assert.notNull(dict, ResponseEnum.DICT_CODE_NOT_EXISTS);
+        List<Dict> list = this.getByParentId(dict.getId());
+        return list;
     }
 
     /**

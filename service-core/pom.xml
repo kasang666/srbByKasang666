@@ -58,6 +58,11 @@
             <artifactId>xmlbeans</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
 
 <!--    注意：因为maven工程在默认情况下src/main/java目录下的所有资源文件是不发布到target目录下的，因此我们需要在pom.xml中添加xml配置文件发布配置-->

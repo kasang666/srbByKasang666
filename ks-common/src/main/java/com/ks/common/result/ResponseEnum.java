@@ -46,6 +46,7 @@ public enum ResponseEnum {
     USERNAME_OR_PASSWORD_ERROR(-212, "用户名或密码错误！"),
 
 
+    USER_BIND_EXIST_ERROR(-300, "用户已存在"),
     USER_BIND_IDCARD_EXIST_ERROR(-301, "身份证号码已绑定"),
     USER_NO_BIND_ERROR(302, "用户未绑定"),
     USER_NO_AMOUNT_ERROR(303, "用户信息未审核"),
@@ -53,6 +54,7 @@ public enum ResponseEnum {
     LEND_INVEST_ERROR(305, "当前状态无法投标"),
     LEND_FULL_SCALE_ERROR(306, "已满标，无法投标"),
     NOT_SUFFICIENT_FUNDS_ERROR(307, "余额不足，请充值"),
+    DICT_CODE_NOT_EXISTS(308, "字典数据不存在"),
 
     PAY_UNIFIEDORDER_ERROR(401, "统一下单错误"),
 

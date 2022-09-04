@@ -37,14 +37,14 @@ public class OSSController {
                         @RequestParam("module") String module){
 
         String url = this.ossService.uploadFile(file, module);
-        return R.success().data("records", url);
+        return R.success().data("url", url);
     }
 
     @ApiOperation(value = "文件删除")
     @DeleteMapping("/remove")
     public R removeFile(@ApiParam(value = "文件名称", required = true)
-                        @RequestParam("fileName") String fileName){
-        this.ossService.removeFile(fileName);
+                        @RequestParam("url") String url){
+        this.ossService.removeFile(url);
         return R.success().msg("删除成功！");
     }
 
