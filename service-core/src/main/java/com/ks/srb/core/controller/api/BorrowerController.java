@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +32,7 @@ public class BorrowerController {
     @Autowired
     private BorrowerService borrowerService;
 
-    @ApiOperation("保存借款人信息")
+    @ApiOperation("保存借款人申请额度信息")
     @PostMapping("/auth/save")
     public R saveBorrowerInfo(
             @ApiParam(value = "借款人信息", required = true)
@@ -48,5 +45,13 @@ public class BorrowerController {
         return R.success().msg("信息提交成功！");
     }
 
+    @ApiOperation("获取借款人申请额度结果")
+    @GetMapping("/auth/getBorrowerStatus")
+    public R getBorrowerStatus(HttpServletRequest request){
+        String token = request.getHeader("token");
+        Long userId = JwtUtils.getUserId(token);
+        Integer borrowerStatus = this.borrowerService.getBorrowerStatus(userId);
+        return R.success().data("borrowerStatus", borrowerStatus);
+    }
 }
 

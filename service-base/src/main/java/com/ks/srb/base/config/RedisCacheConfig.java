@@ -30,7 +30,7 @@ public class RedisCacheConfig {
         RedisCacheManager redisCacheManager = new RedisCacheManager(
                 RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
                 // 默认策略，未配置的 key 会使用这个
-                this.getRedisCacheConfigurationWithTtl(60),
+                this.getRedisCacheConfigurationWithTtl(300),
                 // 指定 key 策略
                 this.getRedisCacheConfigurationMap()
         );

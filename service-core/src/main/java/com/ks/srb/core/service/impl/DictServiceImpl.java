@@ -95,4 +95,20 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         List<Dict> dictList = this.baseMapper.selectList(lqw);
         return dictList.size() > 0;
     }
+
+    /**
+     * 辅助方法，在封装BorrowerDetailVO是使用
+     * @param dictCode
+     * @param value
+     * @return
+     */
+    public String getNameByParentDictCodeAndValue(String dictCode, Integer value){
+        LambdaQueryWrapper<Dict> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(Dict::getDictCode, dictCode);
+        Dict dict = this.getOne(lqw);
+        LambdaQueryWrapper<Dict> lqw1 = new LambdaQueryWrapper<>();
+        lqw1.eq(Dict::getParentId, dict.getId()).eq(Dict::getValue, value);
+        Dict one = this.getOne(lqw1);
+        return one.getName();
+    }
 }
