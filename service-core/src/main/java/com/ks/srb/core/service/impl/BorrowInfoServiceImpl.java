@@ -6,19 +6,20 @@ import com.ks.common.exception.Assert;
 import com.ks.common.result.ResponseEnum;
 import com.ks.srb.core.mapper.BorrowInfoMapper;
 import com.ks.srb.core.pojo.entity.BorrowInfo;
+import com.ks.srb.core.pojo.entity.Borrower;
 import com.ks.srb.core.pojo.entity.IntegralGrade;
 import com.ks.srb.core.pojo.entity.UserInfo;
 import com.ks.srb.core.pojo.enums.BorrowAuthEnum;
 import com.ks.srb.core.pojo.enums.BorrowInfoStatusEnum;
-import com.ks.srb.core.service.BorrowInfoService;
-import com.ks.srb.core.service.DictService;
-import com.ks.srb.core.service.IntegralGradeService;
-import com.ks.srb.core.service.UserInfoService;
+import com.ks.srb.core.pojo.vo.BorrowerDetailVO;
+import com.ks.srb.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -38,6 +39,9 @@ public class BorrowInfoServiceImpl extends ServiceImpl<BorrowInfoMapper, BorrowI
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private BorrowerService borrowerService;
 
     @Override
     public BigDecimal getBorrowAmount(Long userId) {
@@ -97,13 +101,39 @@ public class BorrowInfoServiceImpl extends ServiceImpl<BorrowInfoMapper, BorrowI
     public List<BorrowInfo> getBorrowInfoList() {
         List<BorrowInfo> borrowInfoList = this.baseMapper.getBorrowInfoList();
         borrowInfoList.stream().forEach(item -> {
-            String moneyUse = this.dictService.getNameByParentDictCodeAndValue("moneyUse", item.getMoneyUse());
-            String returnMethod = this.dictService.getNameByParentDictCodeAndValue("returnMethod", item.getReturnMethod());
-            String status = BorrowInfoStatusEnum.getMsgByStatus(item.getStatus());
-            item.getParam().put("moneyUse", moneyUse);
-            item.getParam().put("returnMethod", returnMethod);
-            item.getParam().put("status", status);
+            exchangeBorrowInfo(item);
         });
         return borrowInfoList;
+    }
+
+    /**
+     * 转换borrowInfo里面的moneyUse, returnMethod等信息
+     * @param item
+     */
+    private void exchangeBorrowInfo(BorrowInfo item) {
+        String moneyUse = this.dictService.getNameByParentDictCodeAndValue("moneyUse", item.getMoneyUse());
+        String returnMethod = this.dictService.getNameByParentDictCodeAndValue("returnMethod", item.getReturnMethod());
+        String status = BorrowInfoStatusEnum.getMsgByStatus(item.getStatus());
+        item.getParam().put("moneyUse", moneyUse);
+        item.getParam().put("returnMethod", returnMethod);
+        item.getParam().put("status", status);
+    }
+
+    @Override
+    public Map<String, Object> getBorrowInfoDetail(Long id) {
+        BorrowInfo borrowInfo = this.getById(id);
+        // 获取borrowInfo且不为空
+        Assert.notNull(borrowInfo, ResponseEnum.ERROR);
+        exchangeBorrowInfo(borrowInfo);
+        // 获取borrower的id
+        Long userId = borrowInfo.getUserId();
+        LambdaQueryWrapper<Borrower> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(Borrower::getUserId, userId);
+        Borrower borrower = this.borrowerService.getOne(lqw);
+        BorrowerDetailVO borrowerDetailVO = this.borrowerService.showInfo(borrower.getId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("borrowInfo", borrowInfo);
+        map.put("borrower", borrowerDetailVO);
+        return map;
     }
 }
