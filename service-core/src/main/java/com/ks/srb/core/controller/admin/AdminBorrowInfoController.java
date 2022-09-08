@@ -12,16 +12,14 @@ package com.ks.srb.core.controller.admin;
 
 import com.ks.common.result.R;
 import com.ks.srb.core.pojo.entity.BorrowInfo;
+import com.ks.srb.core.pojo.vo.BorrowInfoApprovalVO;
 import com.ks.srb.core.service.BorrowInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -49,5 +47,14 @@ public class AdminBorrowInfoController {
         Map<String, Object> borrowInfoDetail = this.borrowInfoService.getBorrowInfoDetail(id);
         return R.success().data("borrowInfoDetail", borrowInfoDetail);
     }
+
+    @ApiOperation("保存借款申请审批结果")
+    @PostMapping("/approval")
+    public R saveApprovalInfo(@ApiParam(value = "审批结果", required = true)
+                              @RequestBody BorrowInfoApprovalVO borrowInfoApprovalVO){
+        this.borrowInfoService.saveApprovalInfo(borrowInfoApprovalVO);
+        return R.success().msg("审批成功");
+    }
+
 
 }

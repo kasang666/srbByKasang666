@@ -2,6 +2,7 @@ package com.ks.srb.core.service;
 
 import com.ks.srb.core.pojo.entity.BorrowInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ks.srb.core.pojo.vo.BorrowInfoApprovalVO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,4 +27,6 @@ public interface BorrowInfoService extends IService<BorrowInfo> {
     List<BorrowInfo> getBorrowInfoList();
 
     Map<String, Object> getBorrowInfoDetail(Long id);
+
+    void saveApprovalInfo(BorrowInfoApprovalVO borrowInfoApprovalVO);
 }

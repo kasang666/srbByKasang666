@@ -1,17 +1,26 @@
 package com.ks.srb.core.pojo.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -68,12 +77,18 @@ public class Lend implements Serializable {
     @ApiModelProperty(value = "投资人数")
     private Integer investNum;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "发布日期")
     private LocalDateTime publishDate;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @ApiModelProperty(value = "开始日期")
     private LocalDate lendStartDate;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @ApiModelProperty(value = "结束日期")
     private LocalDate lendEndDate;
 
@@ -89,21 +104,31 @@ public class Lend implements Serializable {
     @ApiModelProperty(value = "状态")
     private Integer status;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "审核时间")
     private LocalDateTime checkTime;
 
     @ApiModelProperty(value = "审核用户id")
     private Long checkAdminId;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "放款时间")
     private LocalDateTime paymentTime;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "放款人id")
     private LocalDateTime paymentAdminId;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
 
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
 
@@ -111,6 +136,11 @@ public class Lend implements Serializable {
     @TableField("is_deleted")
     @TableLogic
     private Boolean deleted;
+
+
+    @ApiModelProperty("其他参数")
+    @TableField(exist = false)
+    private Map<String, Object> param = new HashMap<>();
 
 
 }

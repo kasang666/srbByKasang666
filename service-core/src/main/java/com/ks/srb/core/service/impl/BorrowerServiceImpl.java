@@ -92,6 +92,7 @@ public class BorrowerServiceImpl extends ServiceImpl<BorrowerMapper, Borrower> i
         return status;
     }
 
+    @Cacheable(value = "srb:core:borrower:list")
     @Override
     public Page<Borrower> pageList(Integer page, Integer limit, String keyword) {
         Page<Borrower> borrowerPage = new Page<>();
