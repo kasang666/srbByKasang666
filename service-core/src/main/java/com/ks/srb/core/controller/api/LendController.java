@@ -6,13 +6,16 @@ import com.ks.srb.core.pojo.entity.Lend;
 import com.ks.srb.core.service.LendService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -40,5 +43,12 @@ public class LendController {
         return R.success().data("lendList", list);
     }
 
+    @ApiOperation("获取标的详情")
+    @GetMapping("/show/{lendId}")
+    public R getDetail(@ApiParam(value = "标的id", required = true)
+                       @PathVariable Long lendId){
+        Map<String, Object> lendDetail = this.lendService.getDetailById(lendId);
+        return R.success().data("lendDetail", lendDetail);
+    }
 }
 
