@@ -96,6 +96,15 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
         this.baseMapper.updateAccount(bindCode, chargeAmt, freezeAmount);
     }
 
+    @Override
+    public BigDecimal getAccount(Long userId) {
+        LambdaQueryWrapper<UserAccount> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(UserAccount::getUserId, userId);
+        UserAccount userAccount = this.getOne(lqw);
+        Assert.notNull(userAccount, ResponseEnum.LOGIN_AUTH_ERROR);
+        return userAccount.getAmount();
+    }
+
     /**
      * 判断流水号是否存在
      * @param transFlowId

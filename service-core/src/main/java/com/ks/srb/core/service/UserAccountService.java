@@ -19,4 +19,6 @@ public interface UserAccountService extends IService<UserAccount> {
     String getFormStr(BigDecimal chargeAmt, Long userId);
 
     void notifyForHfb(Map<String, Object> paramMap);
+
+    BigDecimal getAccount(Long userId);
 }
