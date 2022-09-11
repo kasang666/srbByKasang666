@@ -1,19 +1,23 @@
 package com.ks.srb.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ks.common.exception.Assert;
 import com.ks.common.exception.BusinessException;
 import com.ks.common.result.ResponseEnum;
 import com.ks.srb.base.util.JwtUtils;
+import com.ks.srb.core.mapper.UserAccountMapper;
 import com.ks.srb.core.mapper.UserInfoMapper;
+import com.ks.srb.core.mapper.UserLoginRecordMapper;
 import com.ks.srb.core.pojo.entity.UserAccount;
 import com.ks.srb.core.pojo.entity.UserInfo;
 import com.ks.srb.core.pojo.entity.UserLoginRecord;
 import com.ks.srb.core.pojo.query.UserInfoQuery;
 import com.ks.srb.core.pojo.vo.LoginVO;
 import com.ks.srb.core.pojo.vo.RegisterVO;
+import com.ks.srb.core.pojo.vo.UserIndexVO;
 import com.ks.srb.core.pojo.vo.UserInfoVO;
 import com.ks.srb.core.service.UserAccountService;
 import com.ks.srb.core.service.UserInfoService;
@@ -25,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -37,6 +42,12 @@ import java.nio.charset.StandardCharsets;
  */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
+
+    @Resource
+    private UserLoginRecordMapper userLoginRecordMapper;
+
+    @Resource
+    private UserAccountMapper userAccountMapper;
 
     @Autowired
     private UserAccountService accountService;
@@ -152,5 +163,47 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         lqw.eq(StringUtils.isNotBlank(mobile), UserInfo::getMobile, mobile);
         int count = this.count(lqw);
         return count == 0;
+    }
+
+    @Override
+    public UserIndexVO getIndexUserInfo(Long userId) {
+
+        //用户信息
+        UserInfo userInfo = baseMapper.selectById(userId);
+
+        //账户信息
+        QueryWrapper<UserAccount> userAccountQueryWrapper = new QueryWrapper<>();
+        userAccountQueryWrapper.eq("user_id", userId);
+        UserAccount userAccount = userAccountMapper.selectOne(userAccountQueryWrapper);
+
+        //登录信息
+        QueryWrapper<UserLoginRecord> userLoginRecordQueryWrapper = new QueryWrapper<>();
+        userLoginRecordQueryWrapper
+                .eq("user_id", userId)
+                .orderByDesc("id")
+                .last("limit 1");
+        UserLoginRecord userLoginRecord = userLoginRecordMapper.selectOne(userLoginRecordQueryWrapper);
+
+        //组装结果数据
+        UserIndexVO userIndexVO = new UserIndexVO();
+        userIndexVO.setUserId(userInfo.getId());
+        userIndexVO.setUserType(userInfo.getUserType());
+        userIndexVO.setName(userInfo.getName());
+        userIndexVO.setNickName(userInfo.getNickName());
+        userIndexVO.setHeadImg(userInfo.getHeadImg());
+        userIndexVO.setBindStatus(userInfo.getBindStatus());
+        userIndexVO.setAmount(userAccount.getAmount());
+        userIndexVO.setFreezeAmount(userAccount.getFreezeAmount());
+        userIndexVO.setLastLoginTime(userLoginRecord.getCreateTime());
+
+        return userIndexVO;
+    }
+
+    @Override
+    public String getMobileByBindCode(String bindCode) {
+        QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
+        userInfoQueryWrapper.eq("bind_code", bindCode);
+        UserInfo userInfo = baseMapper.selectOne(userInfoQueryWrapper);
+        return userInfo.getMobile();
     }
 }

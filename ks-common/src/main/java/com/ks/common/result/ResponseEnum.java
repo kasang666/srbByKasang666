@@ -44,6 +44,8 @@ public enum ResponseEnum {
     LOGIN_LOKED_ERROR(210, "用户被锁定"),
     LOGIN_AUTH_ERROR(-211, "未登录"),
     USERNAME_OR_PASSWORD_ERROR(-212, "用户名或密码错误！"),
+    USER_TYPE_ERROR(-213, "用户类型错误"),
+    LOWEST_AMOUNT_ERROR(-214, "最低投资金额错误"),
 
 
     USER_BIND_EXIST_ERROR(-300, "用户已存在"),

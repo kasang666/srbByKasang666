@@ -2,6 +2,11 @@ package com.ks.srb.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ks.srb.core.pojo.entity.TransFlow;
+import com.ks.srb.core.pojo.entity.UserInfo;
+import com.ks.srb.core.pojo.enums.TransTypeEnum;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +18,9 @@ import com.ks.srb.core.pojo.entity.TransFlow;
  */
 public interface TransFlowService extends IService<TransFlow> {
 
+    boolean transFlowExists(String agentBillNo);
+
+    void saveTransFlow(String agentBillNo, UserInfo userInfo, BigDecimal chargeAmt, TransTypeEnum transTypeEnum);
+
+    List<TransFlow> selectByUserId(Long userId);
 }

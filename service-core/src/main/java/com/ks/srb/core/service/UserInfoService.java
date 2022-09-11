@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ks.srb.core.pojo.query.UserInfoQuery;
 import com.ks.srb.core.pojo.vo.LoginVO;
 import com.ks.srb.core.pojo.vo.RegisterVO;
+import com.ks.srb.core.pojo.vo.UserIndexVO;
 import com.ks.srb.core.pojo.vo.UserInfoVO;
 
 /**
@@ -28,4 +29,8 @@ public interface UserInfoService extends IService<UserInfo> {
     void lock(Long id, Integer status);
 
     boolean checkMobile(String mobile);
+
+    UserIndexVO getIndexUserInfo(Long userId);
+
+    String getMobileByBindCode(String bindCode);
 }

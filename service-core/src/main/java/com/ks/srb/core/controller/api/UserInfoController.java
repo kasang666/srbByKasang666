@@ -5,6 +5,7 @@ import com.ks.common.result.R;
 import com.ks.srb.base.util.JwtUtils;
 import com.ks.srb.core.pojo.vo.LoginVO;
 import com.ks.srb.core.pojo.vo.RegisterVO;
+import com.ks.srb.core.pojo.vo.UserIndexVO;
 import com.ks.srb.core.pojo.vo.UserInfoVO;
 import com.ks.srb.core.service.UserInfoService;
 import io.swagger.annotations.Api;
@@ -110,6 +111,15 @@ public class UserInfoController {
     @GetMapping("/checkMobile/{mobile}")
     public boolean checkMobile(@ApiParam(value = "需要校验的手机号", required = true) @PathVariable String mobile){
         return this.userInfoService.checkMobile(mobile);
+    }
+
+    @ApiOperation("获取个人空间用户信息")
+    @GetMapping("/auth/getIndexUserInfo")
+    public R getIndexUserInfo(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        Long userId = JwtUtils.getUserId(token);
+        UserIndexVO userIndexVO = userInfoService.getIndexUserInfo(userId);
+        return R.success().data("userIndexVO", userIndexVO);
     }
 
 

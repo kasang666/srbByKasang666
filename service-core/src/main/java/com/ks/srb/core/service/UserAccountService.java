@@ -21,4 +21,10 @@ public interface UserAccountService extends IService<UserAccount> {
     void notifyForHfb(Map<String, Object> paramMap);
 
     BigDecimal getAccount(Long userId);
+
+    void updateAccount(String bindCode, BigDecimal bigDecimal, BigDecimal bigDecimal1);
+
+    String commitWithdraw(BigDecimal fetchAmt, Long userId);
+
+    void notifyWithdraw(Map<String, Object> paramMap);
 }

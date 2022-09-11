@@ -24,6 +24,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ks.srb</groupId>
+            <artifactId>rabbit-mq</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

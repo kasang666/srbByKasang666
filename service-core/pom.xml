@@ -24,6 +24,12 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.ks.srb</groupId>
+            <artifactId>rabbit-mq</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!--mysql驱动-->
         <dependency>
             <groupId>mysql</groupId>
@@ -62,6 +68,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+
 
     </dependencies>
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ks.common.exception.Assert;
 import com.ks.common.result.ResponseEnum;
+import com.ks.srb.base.DTO.SmsDTO;
 import com.ks.srb.core.hfb.FormHelper;
 import com.ks.srb.core.hfb.HfbConst;
 import com.ks.srb.core.hfb.RequestHelper;
@@ -14,8 +15,12 @@ import com.ks.srb.core.pojo.entity.UserInfo;
 import com.ks.srb.core.pojo.enums.TransTypeEnum;
 import com.ks.srb.core.service.TransFlowService;
 import com.ks.srb.core.service.UserAccountService;
+import com.ks.srb.core.service.UserBindService;
 import com.ks.srb.core.service.UserInfoService;
 import com.ks.srb.core.utils.LendNoUtils;
+import com.ks.srb.mq.service.MQService;
+import com.ks.srb.mq.utils.MQConst;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +37,15 @@ import java.util.Map;
  * @author kasang
  * @since 2022-08-20
  */
+@Slf4j
 @Service
 public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserAccount> implements UserAccountService {
+
+    @Autowired
+    private MQService mqService;
+
+    @Autowired
+    private UserBindService userBindService;
 
     @Autowired
     private TransFlowService transFlowService;
@@ -82,18 +94,16 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
         userInfoLambdaQueryWrapper.eq(UserInfo::getBindCode,bindCode);
         UserInfo userInfo = this.userInfoService.getOne(userInfoLambdaQueryWrapper);
         // 创建流水对象
-        TransFlow transFlow = new TransFlow();
-        transFlow.setUserId(userInfo.getId());
-        transFlow.setUserName(userInfo.getName());
-        transFlow.setTransNo(agentBillNo);
-        transFlow.setTransType(TransTypeEnum.RECHARGE.getTransType());  // 当前接口为充值接口
-        transFlow.setTransTypeName(TransTypeEnum.RECHARGE.getTransTypeName());   // 充值
-        transFlow.setTransAmount(chargeAmt);
-        transFlow.setMemo("充值");
-        // 保存流水对象
-        this.transFlowService.save(transFlow);
+        this.transFlowService.saveTransFlow(agentBillNo, userInfo, chargeAmt, TransTypeEnum.RECHARGE);
         // 会员账户金额进行相应的操作
         this.baseMapper.updateAccount(bindCode, chargeAmt, freezeAmount);
+        //发消息
+        log.info("发消息");
+        String mobile = userInfoService.getMobileByBindCode(bindCode);
+        SmsDTO smsDTO = new SmsDTO();
+        smsDTO.setMobile(mobile);
+        smsDTO.setMessage("充值成功");
+        mqService.sendMessage(MQConst.EXCHANGE_TOPIC_SMS, MQConst.ROUTING_SMS_ITEM, smsDTO);
     }
 
     @Override
@@ -103,6 +113,55 @@ public class UserAccountServiceImpl extends ServiceImpl<UserAccountMapper, UserA
         UserAccount userAccount = this.getOne(lqw);
         Assert.notNull(userAccount, ResponseEnum.LOGIN_AUTH_ERROR);
         return userAccount.getAmount();
+    }
+
+    @Override
+    public void updateAccount(String bindCode, BigDecimal bigDecimal, BigDecimal bigDecimal1) {
+        this.baseMapper.updateAccount(bindCode, bigDecimal, bigDecimal1);
+    }
+
+    @Override
+    public String commitWithdraw(BigDecimal fetchAmt, Long userId) {
+        //账户可用余额充足：当前用户的余额 >= 当前用户的提现金额
+        BigDecimal amount = this.getAccount(userId);//获取当前用户的账户余额
+        Assert.isTrue(amount.doubleValue() >= fetchAmt.doubleValue(),
+                ResponseEnum.NOT_SUFFICIENT_FUNDS_ERROR);
+        String bindCode = this.userBindService.getBindCodeByUserId(userId);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("agentId", HfbConst.AGENT_ID);
+        paramMap.put("agentBillNo", LendNoUtils.getWithdrawNo());
+        paramMap.put("bindCode", bindCode);
+        paramMap.put("fetchAmt", fetchAmt);
+        paramMap.put("feeAmt", new BigDecimal(0));
+        paramMap.put("notifyUrl", HfbConst.WITHDRAW_NOTIFY_URL);
+        paramMap.put("returnUrl", HfbConst.WITHDRAW_RETURN_URL);
+        paramMap.put("timestamp", RequestHelper.getTimestamp());
+        String sign = RequestHelper.getSign(paramMap);
+        paramMap.put("sign", sign);
+        //构建自动提交表单
+        String formStr = FormHelper.buildForm(HfbConst.WITHDRAW_URL, paramMap);
+        return formStr;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void notifyWithdraw(Map<String, Object> paramMap) {
+        log.info("提现成功");
+        String agentBillNo = (String)paramMap.get("agentBillNo");
+        boolean result = transFlowService.transFlowExists(agentBillNo);
+        if(result){
+            log.warn("幂等性返回");
+            return;
+        }
+        String bindCode = (String)paramMap.get("bindCode");
+        String fetchAmt = (String)paramMap.get("fetchAmt");
+        //根据用户账户修改账户金额
+        baseMapper.updateAccount(bindCode, new BigDecimal("-" + fetchAmt), new BigDecimal(0));
+        //增加交易流水
+        LambdaQueryWrapper<UserInfo> lqw = new LambdaQueryWrapper<>();
+        lqw.eq(UserInfo::getBindCode, bindCode);
+        UserInfo userInfo = this.userInfoService.getOne(lqw);
+        transFlowService.saveTransFlow(agentBillNo, userInfo, new BigDecimal(fetchAmt), TransTypeEnum.WITHDRAW);
     }
 
     /**

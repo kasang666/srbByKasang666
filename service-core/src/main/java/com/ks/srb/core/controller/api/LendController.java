@@ -34,6 +34,7 @@ import java.util.Map;
 @RequestMapping("/api/core/lend")
 public class LendController {
 
+
     @Autowired
     private LendService lendService;
 
@@ -65,5 +66,6 @@ public class LendController {
         BigDecimal interestCount = this.lendService.getInterestCount(invest, yearRate, totalMonth, returnMethod);
         return R.success().data("interestCount", interestCount);
     }
+
 }
 
